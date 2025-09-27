@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const server = http.createServer((req, res) => {
+<<<<<<< HEAD
     // Handle API requests
     if (req.url === '/api/ping' && req.method === 'GET') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -43,6 +44,22 @@ const server = http.createServer((req, res) => {
         </body>
         </html>
     `);
+=======
+    // Create correct path to index.html
+    const filePath = path.join(__dirname, 'index.html');
+    
+    // Read file asynchronously
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Error reading file');
+            return;
+        }
+        
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+    });
+>>>>>>> a88d7bb79793f0077dcc1dd5db54851b4eec36be
 });
 
 const PORT = 3000;
